@@ -1,5 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Large Text"
+            android:id="@+id/movieTitle"
+            android:textColor="@color/titles"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textSize="@dimen/text_size_25_sp"
+            android:layout_marginRight="@dimen/dimen_8_dp"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginLeft="@dimen/dimen_8_dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/dimen_33_dp"
+            tools:targetApi="ice_cream_sandwich" />
+
+        <ImageView
+            android:id="@+id/favorite_stroke"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_like"
+            android:layout_marginTop="@dimen/dimen_0_dp"
+            app:layout_constraintTop_toBottomOf="@+id/movieTitle"
+            android:layout_marginRight="@dimen/dimen_8_dp"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginLeft="@dimen/dimen_8_dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="@dimen/dimen_8_dp"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/favorite_full"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_solid_like"
+            android:layout_marginTop="@dimen/dimen_0_dp"
+            app:layout_constraintTop_toBottomOf="@+id/movieTitle"
+            android:layout_marginRight="@dimen/dimen_8_dp"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginLeft="@dimen/dimen_8_dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="@dimen/dimen_8_dp"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintVertical_bias="0.0"
+            android:visibility="invisible"/>
+    </android.support.constraint.ConstraintLayout>
 
 </layout>

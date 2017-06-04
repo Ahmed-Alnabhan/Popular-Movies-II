@@ -13,7 +13,6 @@ import java.net.MalformedURLException;
 import java.net.Socket;
 import java.net.SocketAddress;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -22,9 +21,8 @@ import java.util.Scanner;
 
 public class FetchMoviesTask extends AsyncTask<String, Void, JSONObject[]> {
     private final String TAG = FetchMoviesTask.class.getSimpleName();
-    //private String[] postersArray;
+
     String moviesJsonString;
-    private ArrayList<String> mMovieInfo;
     private JsonResult listener;
     // Constructor
     public FetchMoviesTask(JsonResult listener) {

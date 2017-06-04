@@ -3,7 +3,7 @@
     package="com.elearnna.www.popularmovies">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="com.elearnna.www.popularmovies.provider.READ_MOVIES" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -27,9 +27,20 @@
             android:parentActivityName=".MoviesActivity" />
         <activity
             android:name=".Settings"
-            android:label="Settings"
-            android:parentActivityName=".MoviesActivity">
+            android:label="@string/settings"
+            android:parentActivityName=".MoviesActivity"
+            android:theme="@style/SettingsFragmentStyle"></activity>
+        <activity
+            android:name=".ReviewsActivity"
+            android:label="@string/user_reviews"
+            android:theme="@style/AppTheme.ReviewsTheme">
+
         </activity>
+
+        <provider
+            android:authorities="com.elearnna.www.popularmovies.provider.FavoriteContentProvider"
+            android:name=".provider.FavoriteContentProvider" />
+
     </application>
 
 </manifest>

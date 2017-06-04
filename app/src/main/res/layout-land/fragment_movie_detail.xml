@@ -9,15 +9,16 @@
 
     <ImageView
         android:id="@+id/moviePoster"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        tools:background="@drawable/ic_star_full"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
+        android:layout_width="@dimen/dimen_0_dp"
+        android:layout_height="@dimen/dimen_0_dp"
+        tools:background="@drawable/ic_like"
+        app:layout_constraintRight_toLeftOf="@+id/guideline2"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        android:layout_marginTop="@dimen/dimen_8_dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="@dimen/dimen_8_dp" />
+
     <View
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -26,115 +27,68 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
+
+    <include
+        layout="@layout/rv_trailers"
+        android:layout_height="wrap_content"
+        android:layout_width="@dimen/dimen_0_dp"
+        android:id="@+id/trailersLayout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="@dimen/dimen_32_dp"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintVertical_bias="0.209" />
+
+    <include
+        layout="@layout/movie_reviews"
+        android:id="@+id/userReviewsLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="27dp"
+        app:layout_constraintTop_toBottomOf="@+id/trailersLayout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline2"
+        app:layout_constraintGuide_begin="@dimen/dimen_296_dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="89dp"
+        tools:layout_editor_absoluteX="296dp" />
+
     <include
         layout="@layout/movie_title"
         android:layout_height="wrap_content"
         android:layout_width="0dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="@dimen/dimen_8_dp"
+        android:layout_marginRight="@dimen/dimen_8_dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:id="@+id/movieTitleLayout"
-        android:layout_marginTop="60dp"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintVertical_bias="0.0" />
+        android:layout_marginLeft="@dimen/dimen_8_dp"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline2"
+        android:id="@+id/include"
+        android:layout_marginStart="@dimen/dimen_8_dp"
+        android:layout_marginEnd="@dimen/dimen_8_dp" />
+
     <include
         layout="@layout/movie_info"
         android:layout_height="wrap_content"
         android:layout_width="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/movieTitleLayout"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="@dimen/dimen_8_dp"
+        app:layout_constraintTop_toBottomOf="@+id/include"
+        android:layout_marginLeft="@dimen/dimen_8_dp"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline2"
+        android:layout_marginRight="@dimen/dimen_8_dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:id="@+id/movieInfoLayout"
-        android:layout_marginTop="100dp" />
-    <!-- <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:background="#1aa1fb"
-                android:layout_weight="0.20">
-
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Large Text"
-                    android:id="@+id/movieTitle"
-                    android:background="@color/movieTitleBGColor"
-                    android:textColor="@color/movieTitleFGColor"
-                    android:textAlignment="center"
-                    android:gravity="center"
-                    android:textSize="25sp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/moviePoster"
-                        android:paddingTop="@dimen/poster_margin"
-                        android:paddingLeft="@dimen/poster_margin"
-                        android:paddingBottom="@dimen/poster_margin"
-                        android:paddingRight="@dimen/poster_margin"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/movieDate"
-                        android:textAlignment="center"
-                        android:layout_gravity="center"
-                        android:paddingTop="@dimen/date_margin"
-                        android:paddingBottom="@dimen/date_margin"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/movieVoteRate"
-                        android:textAlignment="center"
-                        android:layout_gravity="center"
-                        android:background="@drawable/rounded_corner"
-                        android:textColor="@color/movieTitleFGColor"
-                        />
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/movieThumb"
-                    android:paddingLeft="@dimen/poster_margin"
-                    android:paddingTop="@dimen/poster_margin"
-                    android:paddingBottom="@dimen/poster_margin"
-                    android:paddingRight="@dimen/poster_margin"
-                    android:layout_gravity="center_vertical|right"/>
-            </LinearLayout>
-        </LinearLayout>
-    </ScrollView> -->
-
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="@dimen/dimen_8_dp" />
 </android.support.constraint.ConstraintLayout>
 </layout>

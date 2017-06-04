@@ -6,4 +6,14 @@
     <color name="movieTitleBGColor">#1aa1fb</color>
     <color name="movieTitleFGColor">#ffffff</color>
     <color name="movieRateBGColor">#34d1dc</color>
+    <color name="startGradientColor">#212121</color>
+    <color name="centerGradientColor">#88212121</color>
+    <color name="endGradientColor">#ff212121</color>
+    <color name="dark_gray_alpha_40">#66212121</color>
+    <color name="tool_bar_bg_color">#263238</color>
+    <color name="titles">#FFD180</color>
+    <color name="settings_activity_bg_color">#212121</color>
+    <color name="settings_activity_text_color">#cccccc</color>
+    <color name="reviews_bg_color">#757575</color>
+    <color name="reviews_title_bg_color">#616161</color>
 </resources>

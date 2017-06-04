@@ -1,4 +1,4 @@
-package com.elearnna.www.popularmovies;
+package com.elearnna.www.popularmovies.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import com.elearnna.www.popularmovies.R;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
@@ -26,14 +28,14 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
         void onClick(JSONObject movieData);
     }
 
-    // Constructor takes clickHandler as a paramater
+    // Constructor takes clickHandler as a parameter
     public MoviesAdapter(MoviesAdapterOnClickHandler onClickHandler) {
         movieClickHandler = onClickHandler;
     }
     @Override
     public MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         context = parent.getContext();
-        View view = LayoutInflater.from(context).inflate(R.layout.movies_posters,parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.movies_posters, parent, false);
         return new MovieViewHolder(view);
     }
 
@@ -81,7 +83,6 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
      * @param moviesData The new movies data to be displayed.
      */
     public void setMoviesData(JSONObject[] moviesData) {
-        //String[] movies = MoviesData.getMoviesDataFromJSON(moviesData);
         moviesInfoData = moviesData;
         notifyDataSetChanged();
     }

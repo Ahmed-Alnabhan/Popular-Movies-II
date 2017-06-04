@@ -4,7 +4,7 @@ import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import static com.elearnna.www.popularmovies.MoviesAdapter.TAG;
+import static com.elearnna.www.popularmovies.adapters.MoviesAdapter.TAG;
 
 /**
  * Created by Ahmed on 4/22/2017.
