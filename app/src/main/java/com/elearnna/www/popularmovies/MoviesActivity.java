@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -36,6 +37,7 @@ public class MoviesActivity extends AppCompatActivity implements JsonResult,Movi
     private MovieDetailActivityFragment detailFragment;
     private String selectedMovie;
     private FragmentManager fragmentManager;
+    private Parcelable rvSavedstate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,11 @@ public class MoviesActivity extends AppCompatActivity implements JsonResult,Movi
         recyclerView.setHasFixedSize(true);
         moviesAdapter = new MoviesAdapter(this);
         recyclerView.setAdapter(moviesAdapter);
+        if(savedInstanceState != null)
+        {
+            rvSavedstate = savedInstanceState.getParcelable("rvState");
+            recyclerView.getLayoutManager().onRestoreInstanceState(rvSavedstate);
+        }
         updateMoviesSort();
 
     }
@@ -149,6 +156,12 @@ public class MoviesActivity extends AppCompatActivity implements JsonResult,Movi
     public void onStart() {
         super.onStart();
         updateMoviesSort();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable("rvState", recyclerView.getLayoutManager().onSaveInstanceState());
     }
 
     private JSONObject[] readFavoritesFromProvider() {
