@@ -61,11 +61,7 @@ public class MoviesActivity extends AppCompatActivity implements JsonResult,Movi
         recyclerView.setHasFixedSize(true);
         moviesAdapter = new MoviesAdapter(this);
         recyclerView.setAdapter(moviesAdapter);
-        if(savedInstanceState != null)
-        {
-            rvSavedstate = savedInstanceState.getParcelable("rvState");
-            recyclerView.getLayoutManager().onRestoreInstanceState(rvSavedstate);
-        }
+
         updateMoviesSort();
 
     }
@@ -155,13 +151,22 @@ public class MoviesActivity extends AppCompatActivity implements JsonResult,Movi
     @Override
     public void onStart() {
         super.onStart();
-        updateMoviesSort();
+        //updateMoviesSort();
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelable("rvState", recyclerView.getLayoutManager().onSaveInstanceState());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if(savedInstanceState != null){
+            rvSavedstate = savedInstanceState.getParcelable("rvState");
+            recyclerView.getLayoutManager().onRestoreInstanceState(rvSavedstate);
+        }
     }
 
     private JSONObject[] readFavoritesFromProvider() {
