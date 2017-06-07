@@ -61,9 +61,7 @@ public class MoviesActivity extends AppCompatActivity implements JsonResult,Movi
         recyclerView.setHasFixedSize(true);
         moviesAdapter = new MoviesAdapter(this);
         recyclerView.setAdapter(moviesAdapter);
-
         updateMoviesSort();
-
     }
 
     @Override
@@ -106,6 +104,10 @@ public class MoviesActivity extends AppCompatActivity implements JsonResult,Movi
                     mTwoPane = false;
                 }
                 moviesAdapter.setMoviesData(s);
+                if(savedInstance != null){
+                    rvSavedstate = savedInstance.getParcelable("rvState");
+                    recyclerView.getLayoutManager().onRestoreInstanceState(rvSavedstate);
+                }
                 recyclerView.setVisibility(View.VISIBLE);
                 tv_error_message.setVisibility(View.INVISIBLE);
                 tv_no_favorites_message.setVisibility(View.INVISIBLE);
@@ -151,22 +153,21 @@ public class MoviesActivity extends AppCompatActivity implements JsonResult,Movi
     @Override
     public void onStart() {
         super.onStart();
-        //updateMoviesSort();
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        outState.putBoolean("twoPane", mTwoPane);
+        outState.putString("selected_movie", selectedMovie);
         outState.putParcelable("rvState", recyclerView.getLayoutManager().onSaveInstanceState());
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        if(savedInstanceState != null){
-            rvSavedstate = savedInstanceState.getParcelable("rvState");
-            recyclerView.getLayoutManager().onRestoreInstanceState(rvSavedstate);
-        }
+        mTwoPane = savedInstanceState.getBoolean("twoPane");
+        selectedMovie = savedInstanceState.getString("selected_movie");
     }
 
     private JSONObject[] readFavoritesFromProvider() {

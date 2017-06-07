@@ -5,8 +5,8 @@
     <string name="title_activity_movie_detail">Movie Detail</string>
     <string name="title_movie_sort_order">Movies Sort Order</string>
     <string name="pref_sort_key" trnaslatable="false">sort</string>
-    <string name="pref_sort_popular">popularity.desc</string>
-    <string name="pref_sort_top_rated">vote_average.desc</string>
+    <string name="pref_sort_popular" trnaslatable="false">popularity.desc</string>
+    <string name="pref_sort_top_rated" trnaslatable="false">vote_average.desc</string>
     <string name="pref_sort_favorites">favorites</string>
     <string name="pref_sort_label_popular">Most Popular</string>
     <string name="pref_sort_label_highest_rated">Highest Rated</string>
