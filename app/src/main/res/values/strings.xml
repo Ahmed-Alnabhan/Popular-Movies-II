@@ -5,9 +5,9 @@
     <string name="title_activity_movie_detail">Movie Detail</string>
     <string name="title_movie_sort_order">Movies Sort Order</string>
     <string name="pref_sort_key" trnaslatable="false">sort</string>
-    <string name="pref_sort_popular" trnaslatable="false">popularity.desc</string>
-    <string name="pref_sort_top_rated" trnaslatable="false">vote_average.desc</string>
-    <string name="pref_sort_favorites">favorites</string>
+    <string name="pref_sort_popular" trnaslatable="false">popular</string>
+    <string name="pref_sort_top_rated" trnaslatable="false">top_rated</string>
+    <string name="pref_sort_favorites" translatable="false">favorites</string>
     <string name="pref_sort_label_popular">Most Popular</string>
     <string name="pref_sort_label_highest_rated">Highest Rated</string>
     <string name="pref_sort_label_favorites">Favorites</string>
@@ -18,4 +18,6 @@
     <string name="user_reviews">User Reviews</string>
     <string name="review_title">Movie Name</string>
     <string name="no_favorite_movies_seleted">There are no favorite movies to show!</string>
+
+    <string name="movies_order">Movies Categories</string>
 </resources>

@@ -3,6 +3,7 @@ package com.elearnna.www.popularmovies;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -24,7 +25,7 @@ import com.elearnna.www.popularmovies.provider.FavoriteContentProvider;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class MoviesActivity extends AppCompatActivity implements JsonResult,MoviesAdapter.MoviesAdapterOnClickHandler {
+public class MoviesActivity extends AppCompatActivity implements JsonResult,MoviesAdapter.MoviesAdapterOnClickHandler, SharedPreferences.OnSharedPreferenceChangeListener {
 
     private static final String SORT_FAVORITES = "favorites";
     private RecyclerView recyclerView;
@@ -38,6 +39,8 @@ public class MoviesActivity extends AppCompatActivity implements JsonResult,Movi
     private String selectedMovie;
     private FragmentManager fragmentManager;
     private Parcelable rvSavedstate;
+    private SharedPreferences sharedPreferences;
+    private String sort;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +64,16 @@ public class MoviesActivity extends AppCompatActivity implements JsonResult,Movi
         recyclerView.setHasFixedSize(true);
         moviesAdapter = new MoviesAdapter(this);
         recyclerView.setAdapter(moviesAdapter);
-        updateMoviesSort();
+
+        // SharedPreferences
+        setUpsharedPreferences();
+    }
+
+    private void setUpsharedPreferences() {
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
+        sort = sharedPreferences
+                .getString(getString(R.string.pref_sort_key), getString(R.string.pref_sort_popular));
     }
 
     @Override
@@ -140,8 +152,7 @@ public class MoviesActivity extends AppCompatActivity implements JsonResult,Movi
     }
     private void updateMoviesSort(){
         FetchMoviesTask fetchMoviesTask = new FetchMoviesTask(this);
-        String sort = PreferenceManager.getDefaultSharedPreferences(MoviesActivity.this)
-                .getString(getString(R.string.pref_sort_key), getString(R.string.pref_sort_popular));
+
         if (sort.equals(SORT_FAVORITES)) {
             JSONObject[] moviesData = readFavoritesFromProvider();
             onFinishJsonReading(moviesData);
@@ -153,6 +164,14 @@ public class MoviesActivity extends AppCompatActivity implements JsonResult,Movi
     @Override
     public void onStart() {
         super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (true) {
+            updateMoviesSort();
+        }
     }
 
     @Override
@@ -168,6 +187,12 @@ public class MoviesActivity extends AppCompatActivity implements JsonResult,Movi
         super.onRestoreInstanceState(savedInstanceState);
         mTwoPane = savedInstanceState.getBoolean("twoPane");
         selectedMovie = savedInstanceState.getString("selected_movie");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
     }
 
     private JSONObject[] readFavoritesFromProvider() {
@@ -200,4 +225,11 @@ public class MoviesActivity extends AppCompatActivity implements JsonResult,Movi
         return favoriteMovies;
     }
 
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equals(getString(R.string.pref_sort_key))) {
+            sort = sharedPreferences
+                    .getString(getString(R.string.pref_sort_key), getString(R.string.pref_sort_popular));
+        }
+    }
 }

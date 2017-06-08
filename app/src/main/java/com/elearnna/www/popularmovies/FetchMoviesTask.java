@@ -47,12 +47,12 @@ public class FetchMoviesTask extends AsyncTask<String, Void, JSONObject[]> {
         String movie = null;
         try {
             // Create the url
-            final String MOVIES_BASE_RUL = "https://api.themoviedb.org/3/discover/movie?";
+            final String MOVIES_BASE_RUL = "http://api.themoviedb.org/3/movie/";
             final String MOVIES_SORT_METHOD = "sort_by";
             final String API_KEY = "api_key";
 
             Uri uri = Uri.parse(MOVIES_BASE_RUL).buildUpon()
-                    .appendQueryParameter(MOVIES_SORT_METHOD, sortType)
+                    .appendEncodedPath(sortType)
                     .appendQueryParameter(API_KEY, BuildConfig.API_KEY)
                     .build();
             URL url = new URL(uri.toString());
